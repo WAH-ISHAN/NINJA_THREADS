@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import mediaUpload from "../../utils/mediaUpload";
+import mediaUpload from "../utils/MediaUpdate";
 
 export default function AddProductForm() {
 	const [productId, setProductId] = useState("");

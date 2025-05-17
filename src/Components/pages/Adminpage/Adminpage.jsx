@@ -1,13 +1,7 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import { MdWarehouse } from "react-icons/md";
-import { FaUsers } from "react-icons/fa";
-import { FaFileInvoice } from "react-icons/fa6";
-import AdminProductsPage from "./admin/products";
-import AddProductForm from "./admin/addProductForm";
-import EditProductForm from "./admin/editProduct";
-import AdminOrdersPage from "./admin/adminOrders";
+
 import { useEffect, useState } from "react";
-import Loader from "../components/loader";
+
 import axios from "axios";
 import toast from "react-hot-toast";
 
