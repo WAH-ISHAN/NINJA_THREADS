@@ -1,4 +1,7 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+
+
 
 export  function Contact() {
   const onSubmit = async (event) => {
@@ -23,6 +26,21 @@ export  function Contact() {
       console.log("Success", res);
     }
   };
+
+
+
+  const handleSend = () => {
+  
+    const isSuccess = Math.random() > 0.5;
+
+    if (isSuccess) {
+      toast.success("Email submitted successfully!");
+    } else {
+      toast.error("Wait 5 minutes and try again.");
+    }
+  };
+
+
   return (
     <>
       <section className="min-h-screen flex items-center justify-center bg-black text-white px-4">
@@ -55,6 +73,7 @@ export  function Contact() {
             />
             <button
               type="submit"
+              onClick={handleSend}
               className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white text-sm font-semibold"
             >
               Send
