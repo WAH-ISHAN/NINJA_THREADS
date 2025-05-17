@@ -1,19 +1,27 @@
-
-import Header from "./Components/Header"
-import Home from "./Components/Home"
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './Components/HomePage.jsx';
+import Header from './Components/Header.jsx';
+import Register from "./Components/pages/Register.jsx"
+import Login from './Components/pages/Login.jsx';
+import Introduction from './Components/pages/Introduction.jsx';
+import Product from './Components/pages/Product.jsx';
+import Contact from './Components/pages/Contact.jsx';
 
 
 function App() {
-  
-
   return (
-    <>
-     <main>
-    <div className="h-0 w-[40rem] absolute top-[20%] right-[-5%] shadow-[0_0_9000px_20px_#FFFFFF] - rotate-[30deg] -z-10"></div>
-     </main>
-    </>
-  )
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/*" element={<HomePage />} />
+        <Route path="/Login" element={<Login/>} />
+        <Route path="/Register" element={<Register/>} />
+        <Route path="/Introduction" element={<Introduction/>}/>
+        <Route path="/Product" element={<Product />} />
+        <Route path="/Contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

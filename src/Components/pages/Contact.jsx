@@ -1,0 +1,44 @@
+import React from 'react';
+
+export function Contact() {
+  return (
+    <>
+      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4">
+        <div className="w-full max-w-sm md:max-w-md lg:max-w-lg text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Contact Us</h2>
+          <p className="text-gray-400 text-sm md:text-base mb-5">
+            Reach out to us for support, inquiries, or collaboration.
+          </p>
+          <form className="flex flex-col gap-3">
+            <input
+              type="text"
+              placeholder="Name"
+              className="p-2 rounded bg-gray-800 text-white border border-gray-600 placeholder-gray-400 text-sm"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="p-2 rounded bg-gray-800 text-white border border-gray-600 placeholder-gray-400 text-sm"
+            />
+            <textarea
+              placeholder="Message"
+              rows="4"
+              className="p-2 rounded bg-gray-800 text-white border border-gray-600 placeholder-gray-400 text-sm"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white text-sm font-semibold"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </section>
+
+    
+      <hr className="w-full h-[4px] border-none bg-gradient-to-r from-blue-500 via-white to-blue-500 animate-colorChange" />
+    </>
+  );
+}
+
+export default Contact;
