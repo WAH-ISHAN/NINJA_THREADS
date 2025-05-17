@@ -1,49 +1,59 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Loader} from "./utils/loading"
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
+
+
 export function Register() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+const [formData, setFormData] = useState({
+		firstName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		password: "",
+		confirmPassword: "",
+	});
+	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
-  async function handleRegister(e) {
-    e.preventDefault(); // prevent page reload
+	function handleChange(e) {
+		const { name, value } = e.target;
+		setFormData((prev) => ({ ...prev, [name]: value }));
+	}
 
-    if (!fullName || !email || !password || !confirmPassword) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
+	function handleRegister() {
+		if (formData.password !== formData.confirmPassword) {
+			toast.error("Passwords do not match");
+			return;
+		}
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
+		setLoading(true);
+		const payload = {
+			firstName: formData.firstName,
+			lastName: formData.lastName,
+			email: formData.email,
+			phone: formData.phone,
+			password: formData.password,
+		};
 
-    setLoading(true);
+		axios
+			.post(import.meta.env.VITE_API_URL+ "/api/user/saveUser", payload)
+			.then((response) => {
+				console.log("Registration successful", response.data);
+				toast.success("Registration successful");
+				navigate("/login");
+			})
+			.catch((error) => {
+				console.log("Registration failed", error?.response?.data);
+				toast.error(error?.response?.data?.message || "Registration failed");
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	}
 
-    try {
-      const response = await axios.post(
-        import.meta.env.VITE_BACKEND_URL + "/api/user",
-        {
-          fullName,
-          email,
-          password,
-        }
-      );
-      toast.success(response.data?.message || "Registration successful");
-      window.location.href = "/login";
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Registration failed");
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 to-black text-white">
@@ -52,35 +62,48 @@ export function Register() {
         <h2 className="text-3xl font-bold mb-6 text-center">Create Your Account</h2>
         <form className="space-y-5" onSubmit={handleRegister}>
           <input
+           name="firstName"
+            value={formData.firstName}
+           onChange={handleChange}
+            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+           type="text"
+						placeholder="First Name"
+          />
+           <input
+           name="lastName"
+						value={formData.lastName}
+						onChange={handleChange}
+            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
             type="text"
-            placeholder="Username"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+						placeholder="Last Name"
           />
           <input
+            name="email"
+						value={formData.email}
+						onChange={handleChange}
+            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
             type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+						placeholder="Email"
           />
           <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+           name="password"
+						value={formData.password}
+						onChange={handleChange}
             className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            type="password"
+						placeholder="Password"
           />
           <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+           name="confirmPassword"
+						value={formData.confirmPassword}
+						onChange={handleChange}
             className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            type="password"
+						placeholder="Confirm Password"
           />
           <button
             type="submit"
+            	onClick={handleRegister}
             disabled={loading}
             className={`w-full p-3 rounded-md ${
               loading ? "bg-gray-600" : "bg-green-600 hover:bg-green-700"
