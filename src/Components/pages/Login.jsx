@@ -17,7 +17,7 @@ export default function Login() {
     setLoading(true);
 
     axios
-      .post(import.meta.env.VITE_API_URL + "/api/User", {
+      .post(import.meta.env.VITE_API_URL+ "/api/user/login",{
         Email: Email,
         password: Password,
       })
