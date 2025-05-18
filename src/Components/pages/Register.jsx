@@ -56,16 +56,17 @@ const [formData, setFormData] = useState({
 
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 to-black text-white">
+	
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br to-black text-white">
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="bg-slate-800 p-10 rounded-xl shadow-lg w-full max-w-md">
+      <div className="bg-slate-900 p-10 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold mb-6 text-center">Create Your Account</h2>
         <form className="space-y-5" onSubmit={handleRegister}>
           <input
            name="firstName"
             value={formData.firstName}
            onChange={handleChange}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
            type="text"
 						placeholder="First Name"
           />
@@ -73,7 +74,7 @@ const [formData, setFormData] = useState({
            name="lastName"
 						value={formData.lastName}
 						onChange={handleChange}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
             type="text"
 						placeholder="Last Name"
           />
@@ -81,7 +82,7 @@ const [formData, setFormData] = useState({
             name="email"
 						value={formData.email}
 						onChange={handleChange}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
             type="email"
 						placeholder="Email"
           />
@@ -89,7 +90,7 @@ const [formData, setFormData] = useState({
            name="password"
 						value={formData.password}
 						onChange={handleChange}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
             type="password"
 						placeholder="Password"
           />
@@ -97,7 +98,7 @@ const [formData, setFormData] = useState({
            name="confirmPassword"
 						value={formData.confirmPassword}
 						onChange={handleChange}
-            className="w-full p-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none"
+            className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
             type="password"
 						placeholder="Confirm Password"
           />
@@ -105,10 +106,7 @@ const [formData, setFormData] = useState({
             type="submit"
             	onClick={handleRegister}
             disabled={loading}
-            className={`w-full p-3 rounded-md ${
-              loading ? "bg-gray-600" : "bg-green-600 hover:bg-green-700"
-            }`}
-          >
+			      className={`w-full p-3 rounded-md ${loading ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-700"}`}>
             {
               loading ? "Registering..." : "Register"
             }
@@ -116,7 +114,7 @@ const [formData, setFormData] = useState({
         </form>
         <p className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link to="/login" className="text-green-400 underline">
+          <Link to="/login" className="text-blue-700 underline">
             Sign In
           </Link>
         </p>

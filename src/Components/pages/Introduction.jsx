@@ -1,8 +1,12 @@
 import React from 'react';
 
+
+
+
 export function Introduction () {
   return (
     <>
+    
       <section className="min-h-screen flex items-center bg-black text-white px-8 py-20">
         <div className="max-w-4xl mx-auto">
           <button className="border px-4 py-1 rounded-full border-white text-white mb-4 hover:shadow-lg transition-all">
@@ -32,11 +36,7 @@ export function Introduction () {
             <li><strong>Cloud Management & Optimization:</strong> Maximize performance, cut unnecessary costs, and ensure high availability with intelligent cloud monitoring and tuning.</li>
           </ul>
 
-          <div className="flex flex-wrap gap-4">
-            <a href="#" className="px-4 py-2 border rounded-full font-semibold border-white hover:bg-white hover:text-black transition">Documentation ↗</a>
-            <a href="#" className="px-4 py-2 bg-gray-300 rounded-full font-semibold hover:bg-gray-400 transition">GetStarted ↗</a>
-            <a href="#" className="px-4 py-2 bg-gray-800 rounded-full font-semibold text-white hover:bg-gray-700 transition">My_Details ↗</a>
-          </div>
+          
         </div>
       </section>
       <hr className="w-full h-[5px] border-none bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-[length:100%_100%] animate-colorChange "/>

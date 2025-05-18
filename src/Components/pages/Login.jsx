@@ -70,6 +70,7 @@ export default function Login() {
   }
 
   return (
+    
     <div className="flex min-h-screen items-center justify-center bg-black text-white">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-slate-900 p-10 rounded-xl shadow-lg w-full max-w-md">
@@ -107,7 +108,7 @@ export default function Login() {
         </form>
         <p className="mt-4 text-center text-sm">
           Don't have an account?{' '}
-          <Link to="/register" className="text-blue-400 underline">
+          <Link to="/register" className="text-blue-700 underline">
             Register
           </Link>
         </p>
