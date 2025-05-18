@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from './utils/Counter';
+import { AddToCard } from './utils/card';
 
 export function Product() {
   return (
@@ -108,11 +109,11 @@ function PlanCard({ title, price, features }) {
           <li key={index}>✔ {feature}</li>
         ))}
       </ul>
-      <Counter/>
+      
       <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 px-4 rounded-lg font-medium transition-colors">
         Buy Now
       </button>
-      <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 px-4 rounded-lg font-medium transition-colors mt-3">
+      <button onClick={AddToCard}  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 px-4 rounded-lg font-medium transition-colors mt-3">
         ADD Card
       </button>
     </div>

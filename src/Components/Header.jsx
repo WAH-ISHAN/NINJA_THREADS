@@ -1,6 +1,6 @@
 import 'boxicons/css/boxicons.min.css';
 import { useNavigate , Link } from "react-router-dom";
-
+import { LiaCartPlusSolid } from "react-icons/lia";
 
 export function Header() {
   const navigate = useNavigate();
@@ -17,15 +17,24 @@ export function Header() {
         <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/introduction">Introduction</Link>
         <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/product">Product</Link>
         <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/contact">Contact</Link>
+        
       </nav>
 
-      <div className="flex gap-x-4">
+      <div className="flex gap-x-p4 ">
+         <button
+          className="hidden md:flex items-center justify-center bg-black text-white font-semibold py-2 px-4 rounded-full transition-colors hover:bg-gray-200 hover:text-black z-50 cursor-pointer">
+            <LiaCartPlusSolid className="text-2xl"  />
+        </button>
+         
+       
         <button
           onClick={() => navigate('/login')}
           className="hidden md:flex items-center justify-center bg-black text-white font-semibold py-2 px-4 rounded-full transition-colors hover:bg-gray-200 hover:text-black z-50 cursor-pointer">
           SIGN IN
         </button>
+        
       </div>
+    
 
     </header>
   );
