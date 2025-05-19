@@ -1,6 +1,6 @@
 import React from 'react';
-import Counter from './utils/Counter';
-import { AddToCard } from './utils/card';
+import Counter from '../utils/Counter';
+import { AddToCard } from '../utils/card';
 
 export function Product() {
   return (

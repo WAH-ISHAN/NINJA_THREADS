@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { Loader } from "./utils/loading";
+import { Loader } from "../utils/loading";
 import axios from "axios";
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";

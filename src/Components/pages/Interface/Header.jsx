@@ -2,7 +2,7 @@ import 'boxicons/css/boxicons.min.css';
 import { useNavigate , Link } from "react-router-dom";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { IoIosSearch } from "react-icons/io";
-import SearchBar from './SearchBar/SearchBar';
+import SearchBar from '../../SearchBar/SearchBar';
 
 export function Header() {
   const navigate = useNavigate();
