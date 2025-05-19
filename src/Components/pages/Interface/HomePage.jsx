@@ -1,8 +1,8 @@
 import 'boxicons/css/boxicons.min.css';
-import Introduction from './pages/Introduction';
-import Product from './pages/Product';
-import Contact from './pages/Contact';
-import Login from "./pages/Login"
+import Introduction from './Introduction';
+import Product from './Product';
+import Contact from './Contact';
+import Login from "./Login"
 import { useNavigate } from 'react-router-dom';
 
 
