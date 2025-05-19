@@ -43,7 +43,7 @@ export  function Contact() {
 
   return (
     <>
-      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4">
+      <section className="min-h-96 flex items-center justify-center bg-black text-white px-4">
         <div className="w-full max-w-sm md:max-w-md lg:max-w-lg text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Contact Us</h2>
           <p className="text-gray-400 text-sm md:text-base mb-5">
