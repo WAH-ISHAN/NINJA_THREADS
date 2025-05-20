@@ -8,6 +8,7 @@ import Product from './Components/pages/Interface/Product.jsx';
 import Contact from "./Components/pages/Interface/Contact.jsx"
 import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AdminHome from './Components/pages/Adminpage/AdminHome.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Introduction" element={<Introduction/>}/>
         <Route path="/Product" element={<Product />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path='/AdminHome'element={<AdminHome/>}></Route>
       </Routes>
     </BrowserRouter>
     </GoogleOAuthProvider>

@@ -111,6 +111,9 @@ export default function Login() {
           <Link to="/register" className="text-blue-700 underline">
             Register
           </Link>
+          <Link>
+          
+          </Link>
         </p>
       </div>
     </div>

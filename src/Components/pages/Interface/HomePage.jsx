@@ -62,7 +62,6 @@ export function HomePage() {
       <hr
         className="w-full h-[5px] border-none bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-[length:200%_100%] animate-colorChange"/>
 
-      {/*body*/}
 
     <Introduction/>
     <Product/>

@@ -17,10 +17,10 @@ export function Header() {
 <div>
 
    <nav className="hidden md:flex items-center gap-16 text-1xl sm:text-2xl md:text-3xl lg:text-4xl">
-        <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/">Home</Link>
-        <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/introduction">Introduction</Link>
-        <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/product">Product</Link>
-        <Link className="text-base tracking-wider transition-colors hover:text-gray-300 z-50" to="/contact">Contact</Link>
+        <Link className="text-base tracking-wider transition-colors text-gray-400 hover:text-white z-50" to="/">Home</Link>
+        <Link className="text-base tracking-wider transition-colors text-gray-400 hover:text-white z-50" to="/introduction">Introduction</Link>
+        <Link className="text-base tracking-wider transition-colors text-gray-400 hover:text-white z-50" to="/product">Product</Link>
+        <Link className="text-base tracking-wider transition-colors text-gray-400 hover:text-white z-50" to="/contact">Contact</Link>
       
       </nav>
 </div>
