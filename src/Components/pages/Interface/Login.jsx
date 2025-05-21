@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { Loader } from "./utils/loading";
+import { Loader } from "../utils/loading";
 import axios from "axios";
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";
@@ -110,6 +110,9 @@ export default function Login() {
           Don't have an account?{' '}
           <Link to="/register" className="text-blue-700 underline">
             Register
+          </Link>
+          <Link>
+          
           </Link>
         </p>
       </div>
