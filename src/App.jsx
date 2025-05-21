@@ -1,13 +1,14 @@
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
-import HomePage from './Components/HomePage.jsx';
-import Header from './Components/Header.jsx';
-import Register from "./Components/pages/Register.jsx"
-import Login from './Components/pages/Login.jsx';
-import Introduction from './Components/pages/Introduction.jsx';
-import Product from './Components/pages/Product.jsx';
-import Contact from './Components/pages/Contact.jsx';
+import HomePage from './Components/pages/Interface/HomePage.jsx';
+import Header from './Components/pages/Interface/Header.jsx';
+import Register from "./Components/pages/Interface/Register.jsx"
+import Login from './Components/pages/Interface/Login.jsx';
+import Introduction from "./Components/pages/Interface/Introduction.jsx"
+import Product from './Components/pages/Interface/Product.jsx';
+import Contact from "./Components/pages/Interface/Contact.jsx"
 import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AdminHome from './Components/pages/Adminpage/AdminHome.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Introduction" element={<Introduction/>}/>
         <Route path="/Product" element={<Product />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path='/AdminHome'element={<AdminHome/>}></Route>
       </Routes>
     </BrowserRouter>
     </GoogleOAuthProvider>

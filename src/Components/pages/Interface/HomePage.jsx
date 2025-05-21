@@ -1,8 +1,8 @@
 import 'boxicons/css/boxicons.min.css';
-import Introduction from './pages/Introduction';
-import Product from './pages/Product';
-import Contact from './pages/Contact';
-import Login from "./pages/Login"
+import Introduction from './Introduction';
+import Product from './Product';
+import Contact from './Contact';
+import Login from "./Login"
 import { useNavigate } from 'react-router-dom';
 
 
@@ -62,7 +62,6 @@ export function HomePage() {
       <hr
         className="w-full h-[5px] border-none bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-[length:200%_100%] animate-colorChange"/>
 
-      {/*body*/}
 
     <Introduction/>
     <Product/>

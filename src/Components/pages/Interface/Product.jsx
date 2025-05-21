@@ -1,10 +1,10 @@
-import React from 'react';
-import { AddToCard } from './utils/card';
+
+import { AddToCard } from '../utils/card';
 
 export function Product() {
   return (
     <>
-      <section className="py-20 bg-blue text-white px-8">
+      <section className="py-20 bg-black text-white px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-4xl font-bold mb-6">Cloud Service Plans</h2>
