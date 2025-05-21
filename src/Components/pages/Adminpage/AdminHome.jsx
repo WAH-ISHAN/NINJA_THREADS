@@ -8,7 +8,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { SiGoogleanalytics } from "react-icons/si";
 import { IoLogOut } from "react-icons/io5";
 import Login from "../Interface/Login"
-import { useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { AccountToggle } from "./AccountToggle";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -22,9 +22,6 @@ export function AdminHome(){
     navigate("/login");
   };
 
-  const handleProfil = () => {
-    navigate("");
-  };
 
   return (
     <div className="bg-black text-white min-h-screen font-sans">
@@ -34,9 +31,9 @@ export function AdminHome(){
       </header>
 
          
-        <section className="flex ">
+        <div className="flex ">
             
-          <aside className="w-64 bg-[#1a1a1a] h-screen p-6 hidden md:block  shadow hover:shadow-blue-500 transition">
+          <div className="w-64 bg-[#1a1a1a] h-screen p-6 hidden md:block  shadow hover:shadow-blue-500 transition">
             
              <div>
             <AccountToggle />
@@ -47,52 +44,62 @@ export function AdminHome(){
             
             <ul className="space-y-4">
               
-                <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+                <Link onClick={<AdminContent />}className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <FaHome /> Dashboard
-              </li>
+              </Link>
               
               
-              <li onClick={handleProfil} className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link  className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <FaUserCircle />Profile
-              </li>
+              </Link>
 
 
-              <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <FaUsers /> Users
-              </li>
+              </Link>
 
 
-              <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <FaCartArrowDown /> Orders
-              </li>
+              </Link>
 
 
-              <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link  className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <AiFillProduct /> Add Product
-              </li>
+              </Link>
 
 
-              <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <SiGoogleanalytics /> Analyties
-              </li>
+              </Link>
 
              
-              <li className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <IoIosSettings />Settings
-              </li>
+              </Link>
 
 
-              <li onClick={handleLogout} className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+              <Link onClick={handleLogout} className="flex items-center gap-2  cursor-pointer hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
                 <IoLogOut />LogOut
-              </li>
+              </Link>
 
 
             </ul>
-          </aside>
-
-          <AdminContent />
+          </div>
+          <div className="h-full bg-gray w-[calc(100vw-300px)] rounded-lg">
+            <AdminContent />
+            <Routes path="/*" >
+              <Route path="/users" element="" />
+							<Route path="/products" element=''/>
+							<Route path="/orders" element="" />
+							<Route path="/addProduct" element="" />
+							<Route path="/editProduct" element="" />
+            </Routes>
+           
+          </div>
          
-        </section>
+         
+        </div>
       
     </div>
   );
