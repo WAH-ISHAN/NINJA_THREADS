@@ -17,15 +17,15 @@ function App() {
     <BrowserRouter>
       <Header />
       <Toaster position="top-right"/>
-      <Routes path="/*">
-        <Route path="/*" element={<HomePage />} />
-        <Route path="/Login" element={<Login/>} />
-        <Route path="/Register" element={<Register/>} />
-        <Route path="/Introduction" element={<Introduction/>}/>
-        <Route path="/Product" element={<Product />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path='/AdminHome'element={<AdminHome/>}></Route>
-      </Routes>
+      <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/Login" element={<Login/>} />
+      <Route path="/AdminHome" element={<AdminHome/>}/>
+      <Route path="/Register" element={<Register/>} />
+      <Route path="/Introduction" element={<Introduction/>}/>
+      <Route path="/Product" element={<Product />} />
+      <Route path="/Contact" element={<Contact />} />
+</Routes>
     </BrowserRouter>
     </GoogleOAuthProvider>
   );
