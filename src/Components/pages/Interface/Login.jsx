@@ -11,7 +11,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
 
   const loginwithGoogle = useGoogleLogin({
     onSuccess: (res) => {
@@ -26,12 +27,12 @@ export default function LoginPage() {
           localStorage.setItem("token", response.data.token);
 
           const user = response.data.user;
-          if (user.role === "admin") {
+          if (user.usertype === "admin") {
             console.log("Navigating to admin dashboard");
             navigate("/AdminHome");
           } else {
             console.log("Navigating to home page");
-            navigate("/");
+            navigate('/')
           }
         })
         .catch((error) => {
@@ -59,9 +60,10 @@ export default function LoginPage() {
         localStorage.setItem("token", response.data.token);
 
         const user = response.data.user;
-        if (user.role === "admin") {
-          navigate("/AdminHome");
-        } else {
+        if (user.usertype === "admin") {
+          navigate("/AdminHome")
+        }
+         else {
           navigate("/");
         }
       })
