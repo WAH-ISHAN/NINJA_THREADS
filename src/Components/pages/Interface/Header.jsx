@@ -2,7 +2,7 @@ import 'boxicons/css/boxicons.min.css';
 import { useNavigate , Link } from "react-router-dom";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { IoIosSearch } from "react-icons/io";
-import SearchBar from '../utils/SearchBar';
+import SearchBar from "../utils/SearchBar"
 
 export function Header() {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export function Header() {
 
       <div className="flex gap-4 ">
         <button
-          onClick={<SearchBar/>}
+          onClick={SearchBar}
           className="hidden md:flex items-center justify-center bg-black text-white font-semibold py-2 px-4 rounded-full transition-colors hover:bg-gray-200 hover:text-black z-50 cursor-pointer">
             <IoIosSearch className="text-2xl"  />
         </button>
