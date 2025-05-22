@@ -1,5 +1,4 @@
 
-
 export function AdminContent(){
 
 return(
@@ -11,7 +10,7 @@ return(
                 <p className="text-sm text-gray-400">Total Users</p>
                 <p className="text-2xl font-semibold">1,205</p>
               </div>
-              <div className="bg-[#1a1a1a] p-4 rounded-xl shadow hover:shadow-blue-500 transition">
+              <div className="bg-[#1a1a1a] p-4 rounded-xl shadow hover:shadow-[#0eff00] transition">
                 <p className="text-sm text-gray-400">New Orders</p>
                 <p className="text-2xl font-semibold">321</p>
               </div>

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from "react-icons/fc";
 
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -99,6 +100,11 @@ export default function LoginPage() {
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
             required
           />
+           <div className="text-right mt-1">
+          <Link to="/register/ForgotPas" className="text-sm text-blue-500 hover:underline">
+              Forgot Password?
+          </Link >
+  </div>
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-md"
