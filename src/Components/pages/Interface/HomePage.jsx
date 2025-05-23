@@ -4,6 +4,7 @@ import Product from "./Product"
 import Login from "./Login";
 import { useNavigate } from 'react-router-dom';
 import { FeaturePro } from '../utils/FeaturePro';
+import CategorySlider from '../utils/CategorySlider';
 
 
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
 
           <div className="flex flex-col items-start justify-center p-2 m-2">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wider my-8 text-[#DC2626]">
-              WELCOME TO <br /> NINJA THREADS
+              WELCOME TO <br /> NINJA <span className='text-white'>THREADS</span> 
             </h1>
 
             <p className="text-lg text-gray-100 max-w-[30rem]">
@@ -44,7 +45,7 @@ const HomePage = () => {
       </main>
 
       <hr className="w-full h-[5px] border-none bg-gradient-to-r from-[#DC2626] via-[#000000] to-white bg-[length:200%_100%] animate-colorChange" />
-
+      <CategorySlider />
       <FeaturePro />
     <hr className="w-full h-[5px] border-none bg-gradient-to-r from-[#DC2626] via-[#000000] to-white bg-[length:200%_100%] animate-colorChange" />
       <section className="relative h-[60vh] bg-cover bg-center mt-10" style={{ backgroundImage: "url('./public/banare.jpg')" }}>
