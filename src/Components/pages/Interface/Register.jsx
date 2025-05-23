@@ -57,56 +57,40 @@ const [formData, setFormData] = useState({
 
   return (
 	
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br to-black text-white">
+      <div
+  className="flex min-h-screen items-center justify-center bg-black text-white"
+  style={{ backgroundImage: "url('./reg.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+>
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="bg-slate-900 p-10 rounded-xl shadow-lg w-full max-w-md">
+      <div className="bg-[rgba(15,23,42,0.6)] p-10 rounded-xl shadow-lg w-full max-w-md backdrop-blur-sm">
+
         <h2 className="text-3xl font-bold mb-6 text-center">Create Your Account</h2>
         <form className="space-y-5" onSubmit={handleRegister}>
-          <input
-           name="firstName"
-            value={formData.firstName}
-           onChange={handleChange}
+          
+		  <input name="firstName"value={formData.firstName}onChange={handleChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
-           type="text"
-						placeholder="First Name"
-          />
-           <input
-           name="lastName"
-						value={formData.lastName}
-						onChange={handleChange}
+           type="text"placeholder="First Name"/>
+           
+		   <input name="lastName"value={formData.lastName}onChange={handleChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
-            type="text"
-						placeholder="Last Name"
-          />
-          <input
-            name="email"
-						value={formData.email}
-						onChange={handleChange}
+            type="text"placeholder="Last Name"/>
+
+          <input name="email"value={formData.email}onChange={handleChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
-            type="email"
-						placeholder="Email"
-          />
-          <input
-           name="password"
-						value={formData.password}
-						onChange={handleChange}
+            type="email"placeholder="Email"/>
+
+          <input name="password"value={formData.password}onChange={handleChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
-            type="password"
-						placeholder="Password"
-          />
-          <input
-           name="confirmPassword"
-						value={formData.confirmPassword}
-						onChange={handleChange}
+            type="password"placeholder="Password"/>
+
+          <input name="confirmPassword"value={formData.confirmPassword}onChange={handleChange}
             className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none"
-            type="password"
-						placeholder="Confirm Password"
-          />
-          <button
-            type="submit"
-            	onClick={handleRegister}
-            disabled={loading}
-			      className={`w-full p-3 rounded-md ${loading ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-700"}`}>
+            type="password"placeholder="Confirm Password"/>
+
+          <button type="submit"onClick={handleRegister} disabled={loading} className={`w-full p-3 rounded-md ${loading   ? "bg-gray-600" 
+		    : "w-full flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] overflow-hidden cursor-pointer before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300 hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50 items-center justify-center gap-2"
+				}`}
+			  >
             {
               loading ? "Registering..." : "Register"
             }

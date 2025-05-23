@@ -3,7 +3,6 @@ import HomePage from './Components/pages/Interface/HomePage.jsx';
 import Header from './Components/pages/Interface/Header.jsx';
 import Register from "./Components/pages/Interface/Register.jsx"
 import Login from './Components/pages/Interface/Login.jsx';
-import Introduction from "./Components/pages/Interface/Introduction.jsx"
 import Product from './Components/pages/Interface/Product.jsx';
 import Contact from "./Components/pages/Interface/Contact.jsx"
 import { Toaster } from 'react-hot-toast';
@@ -23,7 +22,6 @@ function App() {
       <Route path="/Login" element={<Login/>} />
       <Route path="/AdminHome" element={<AdminHome/>}/>
       <Route path="/Register" element={<Register/>} />
-      <Route path="/Introduction" element={<Introduction/>}/>
       <Route path="/Product" element={<Product />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/ForgotPass" element={<ForgotPass />} />

@@ -81,10 +81,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black text-white">
+     
+    <div
+  className="flex min-h-screen items-center justify-center bg-black text-white"
+  style={{ backgroundImage: "url('./login.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+>
+
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="bg-slate-900 p-10 rounded-xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold mb-6 text-center">Sign In to DEVOXS</h2>
+      <div className="bg-[rgba(15,23,42,0.6)] p-10 rounded-xl shadow-lg w-full max-w-md backdrop-blur-sm">
+
+        <h2 className="text-3xl font-bold mb-6 text-center"> NINJA THREADS</h2>
         <form className="space-y-5" onSubmit={handleLogin}>
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -107,7 +113,9 @@ export default function LoginPage() {
   </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-md"
+            className="w-full flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] overflow-hidden cursor-pointer
+            before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
+            hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50 p-3 rounded-md  items-center justify-center gap-2"
             disabled={loading}
           >
             {loading ? "Loading..." : "Login"}
@@ -116,7 +124,9 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={loginwithGoogle}
-            className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-md flex items-center justify-center gap-2"
+            className="w-full md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
+            before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
+            hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50 p-3 flex items-center justify-center gap-2"
             disabled={loading}
           >
             <FcGoogle className="text-2xl" />
@@ -131,5 +141,6 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+    
   );
 }
