@@ -9,7 +9,7 @@ const SectionTitle = ({title, mb, textAlign}) => {
         <div className={`w-full flex items-center  ${
             textAlign === 'center' ? `justify-${textAlign}` : 'justify-start'
         }`}>
-            <h3 className={`text-3xl text-white font-semibold font-inter capitalize ${margin}`}>{title}</h3>
+            <h3 className={`text-2xl text-white font-semibold font-inter capitalize ${margin}`}>{title}</h3>
         </div>
     );
 };
@@ -60,13 +60,13 @@ export function ClientReact() {
       <div className="slider-container w-full h-full bg-gray-80 ">
         <Slider {...settings}>
           {clientSays.map((client) => (
-            <div key={client.id} className="p-12 border-[1px] border-[#ffffff] rounded-lg gap">
-              <p className="text-2xl mb-4 text-[#ffffff] font-inter font-normal client_say_description">
+            <div key={client.id} className="p-2 border-[0.5px] border-[#000000] rounded-lg bg-[#1b1b1b]">
+              <p className="text-1xl mb-2 text-[#ffffff] font-inter font-normal client_say_description">
                 {client.description}
               </p>
               <div className="flex items-center">
                 <h4>
-                  <User size="4rem" />
+                  <User size="2rem" />
                 </h4>
                 <div className="ml-4">
                   <h4 className="text-2xl text-[#ffffff] font-inter font-medium capitalize mb-1.5">

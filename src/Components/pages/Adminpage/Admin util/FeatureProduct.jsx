@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export function AddProduct(){
+export function FeatureProduct(){
  const [formData, setFormData] = useState({
     productId: "",
     name: "",
@@ -35,10 +35,10 @@ export function AddProduct(){
     .catch(err => console.error(err));
   };
 
-	return(
+    return(
 
     <div className="max-w-2xl mx-auto bg-gray-900 p-8 rounded-xl shadow-lg mt-6 text-white">
-      <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
+      <h2 className="text-2xl font-semibold mb-6">Upcoming New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block mb-1 font-medium">Product ID</label>
@@ -118,5 +118,5 @@ export function AddProduct(){
         </button>
       </form>
     </div>
-	)
+    )
 }

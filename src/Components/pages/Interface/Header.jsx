@@ -6,6 +6,7 @@ import SearchBar from "../utils/SearchBar";
 
 export function Header() {
   const navigate = useNavigate();
+  
 
   return (
     <header className="flex justify-between items-center py-4 px-4 lg:px-20 font-bold text-md bg-black text-white">
@@ -18,7 +19,7 @@ export function Header() {
               </h1>
 
 
-      <nav className="hidden md:flex justify-center items-center gap-16 text-lg">
+      <nav className="hidden md:flex justify-event items-center gap-16 text-lg">
         <Link className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
             hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50" to="/">

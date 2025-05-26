@@ -1,6 +1,6 @@
 import React from 'react';
 import 'boxicons/css/boxicons.min.css';
-import Product from "./Product";
+import Product from "../ProductLayouts/Product.jsx";
 import Login from "./Login";
 import Banner from '../Interface/Banner';
 import { FeaturePro } from '../ProductLayouts/FeaturePro';
@@ -19,7 +19,7 @@ export function HomePage() {
     <div className="min-h-screen bg-[#000000] text-white">
       
       <BannerHome />
-      <div className="relative z-20 -m-20">
+      <div className="relative">
           <Wrapper />
          </div>
       <Banner />

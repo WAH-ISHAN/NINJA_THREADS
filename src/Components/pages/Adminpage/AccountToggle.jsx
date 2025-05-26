@@ -5,7 +5,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 export function AccountToggle() {
   const navigate = useNavigate();
-
+  
 
   const handleClick = () => {
     navigate('/login');
