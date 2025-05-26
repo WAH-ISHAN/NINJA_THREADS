@@ -18,7 +18,7 @@ export function Header() {
               </h1>
 
 
-      <nav className="hidden md:flex items-center gap-16 text-lg">
+      <nav className="hidden md:flex justify-center items-center gap-16 text-lg">
         <Link className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
             hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50" to="/">
@@ -31,7 +31,7 @@ export function Header() {
         </Link>
         <Link className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
-            hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50" to="">
+            hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50" to="/contact">
           Contact
         </Link>
       </nav>
@@ -50,6 +50,7 @@ export function Header() {
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
             hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50">
           <LiaCartPlusSolid className="text-2xl" />
+          <span className='top-2/3 right-1/2 bg-red-700 text-white text-sm w-5 h-5 rounded-full flex justify-center items-center'> 0 </span>
         </button>
 
         <button

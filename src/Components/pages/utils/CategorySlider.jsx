@@ -1,20 +1,20 @@
-
+//learn buy yt
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 const categories = [
-  { label: 'LADY SHORT ARM', img: '/images/lady_short_arm.png' },
-  { label: 'MEN SHORT ARM', img: '/images/men_short_arm.png' },
-  { label: 'HOODIES', img: '/images/hoodies.png' },
-   { label: 'KIDS SHORT ARM', img: '/images/lady_short_arm.png' },
-  { label: 'KIDS LONG ARM', img: '/images/men_short_arm.png' },
+  { label: 'LADY ', img: '/0002.png' },
+  { label: 'MEN SHORT ARM', img: '/0005.png' },
+  { label: 'HOODIES', img: '/0001.png' },
+   { label: 'KIDS SHORT ARM', img: '/0004.png' },
+  { label: 'KIDS LONG ARM', img: '/0004.png' },
 ];
 
 export default function CategorySlider() {
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full px-4 py-0.1 bg-[#1b1b1b] rounded-full shadow-full">
       <Swiper
         slidesPerView={2}
         spaceBetween={16}

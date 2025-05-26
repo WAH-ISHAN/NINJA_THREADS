@@ -74,7 +74,7 @@ export  function Contact() {
             <button
               type="submit"
               onClick={handleSend}
-              className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-white text-sm font-semibold"
+              className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded text-white text-sm font-semibold"
             >
               Send
             </button>
@@ -82,8 +82,7 @@ export  function Contact() {
         </div>
       </section>
 
-    
-      <hr className="w-full h-[4px] border-none bg-gradient-to-r from-blue-500 via-white to-blue-500 animate-colorChange" />
+
     </>
   );
 }
