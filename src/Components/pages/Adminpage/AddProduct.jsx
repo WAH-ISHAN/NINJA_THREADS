@@ -30,7 +30,7 @@ export function AddProduct(){
     };
 
     console.log("Submitting Product:", payload);
-    axios.post("/api/product", payload)
+    axios.post(import.meta.env.VITE_API_URL + "/api/product", payload)
    .then(res => console.log(res))
     .catch(err => console.error(err));
   };

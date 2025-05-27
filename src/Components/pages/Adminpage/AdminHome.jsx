@@ -86,7 +86,7 @@ export default function AdminPage() {
       </div>
 
       <div className="h-full bg-gray-800 w-full md:w-[calc(100vw-300px)] rounded-3xl p-4 overflow-y-auto text-white">
-        <Routes>
+        <Routes path="/">
           <Route path="/Dashboard" element={<AdminContent />} />
           <Route path="/AddProduct" element={<AddProduct />} />
           <Route path="/AddFeatureProduct" element={<FeatureProduct />} />

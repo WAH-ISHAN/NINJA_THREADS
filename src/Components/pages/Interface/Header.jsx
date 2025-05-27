@@ -1,11 +1,12 @@
 import 'boxicons/css/boxicons.min.css';
-import { useNavigate, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { IoIosSearch } from "react-icons/io";
 import SearchBar from "../utils/SearchBar";
+import { UserData } from '../utils/UserData';
 
 export function Header() {
-  const navigate = useNavigate();
+  
   
 
   return (
@@ -53,14 +54,8 @@ export function Header() {
           <LiaCartPlusSolid className="text-2xl" />
           <span className='top-2/3 right-1/2 bg-red-700 text-white text-sm w-5 h-5 rounded-full flex justify-center items-center'> 0 </span>
         </button>
-
-        <button
-          onClick={() => navigate('/login')}
-          className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
-            before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
-            hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50">
-          SIGN IN
-        </button>
+        <UserData />
+        
       </div>
     </header>
   );
