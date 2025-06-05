@@ -2,8 +2,7 @@ import 'boxicons/css/boxicons.min.css';
 import {  Link } from "react-router-dom";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { IoIosSearch } from "react-icons/io";
-import SearchBar from "../utils/SearchBar";
-import { UserData } from '../utils/UserData';
+import UserData from "../utils/UserData";
 
 export function Header() {
   
@@ -40,7 +39,7 @@ export function Header() {
 
       <div className="flex gap-4">
         <button
-          onClick={SearchBar}
+          
           className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
             hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50">

@@ -1,29 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
-export function UserData() {
+import { Link, useNavigate } from "react-router-dom";
+
+export default function UserData() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const token = localStorage.getItem("token");
+	const [user, setUser] = useState(null);
+	const token = localStorage.getItem("token");
 
-   useEffect(() => {
-    if (token != null) {
-        axios.get(import.meta.env.VITE_API_URL + "/api/user/current", {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-        })
-        .then((response) => {
-            console.log("User data fetched successfully", response.data);
-            setUser(response.data.user);
-        })
-        .catch((error) => {
-            console.error("Error fetching user data", error);
-            setUser(null);
-        });
-    }
-}, [token]);
+	useEffect(() => {
+		if (token != null) {
+			axios
+				.get(import.meta.env.VITE_BACKEND_URL + "/api/user/current", {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				})
+				.then((response) => {
+					setUser(response.data.user);
+				})
+				.catch((e) => {
+					console.log(e);
+					setUser(null);
+				});
+		}
+	}, []);
 
 
     return (

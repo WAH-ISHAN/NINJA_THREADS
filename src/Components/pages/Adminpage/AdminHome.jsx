@@ -66,12 +66,6 @@ export default function AdminPage() {
           <AiFillProduct /> Add Feature Product
         </Link>
         <Link
-          to="/Analytics"
-          className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1"
-        >
-          <SiGoogleanalytics /> Analytics
-        </Link>
-        <Link
           to="/pageoverview"
           className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1"
         >
@@ -91,7 +85,6 @@ export default function AdminPage() {
           <Route path="/AddProduct" element={<AddProduct />} />
           <Route path="/AddFeatureProduct" element={<FeatureProduct />} />
           <Route path="/Orders" element={<AdminOrder />} />
-          <Route path="/Analytics" element={<AdminContent />} />
           <Route path="/Users" element={<AdminUsers />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/pageoverview" element={<HomePage />} />

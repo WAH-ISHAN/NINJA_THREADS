@@ -19,7 +19,7 @@ export function AdminContent() {
     const fetchStats = async () => {
       try {
         const [usersRes, ordersRes, productsRes] = await Promise.all([
-          axios.get("/api/users"),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/user`),
           axios.get("/api/orders"),
           axios.get("/api/products"),
         ]);
@@ -37,10 +37,10 @@ export function AdminContent() {
           pendingOrders: newOrders,
         });
 
-        // Group orders by date
+       
         const ordersByDate = {};
         ordersRes.data.forEach(order => {
-          const date = new Date(order.date).toLocaleDateString("en-GB"); // Format: dd/mm/yyyy
+          const date = new Date(order.date).toLocaleDateString("en-GB"); 
           if (!ordersByDate[date]) {
             ordersByDate[date] = 1;
           } else {
@@ -53,7 +53,7 @@ export function AdminContent() {
           orders: count,
         }));
 
-        setChartData(chartArray.reverse()); // reverse for chronological order
+        setChartData(chartArray.reverse()); 
 
       } catch (err) {
         console.error("Failed to fetch dashboard stats", err);
