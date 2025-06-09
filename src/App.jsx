@@ -8,10 +8,9 @@ import Product from './Components/pages/ProductLayouts/Product.jsx';
 import Contact from "./Components/pages/Interface/Contact.jsx";
 import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import AdminHome from './Components/pages/Adminpage/AdminHome.jsx';
 import ForgotPass from './Components/pages/Interface/ForgetPass.jsx';
-import { AddProduct } from './Components/pages/Adminpage/AddProduct.jsx';
 import CartSidebar from './Components/pages/utils/CardSideBar.jsx'; 
+import AdminHome from './Components/pages/Adminpage/AdminHome.jsx';
 
 function App() {
   const [isCartOpen, setCartOpen] = useState(false);
@@ -41,29 +40,22 @@ function App() {
           onCartClick={() => setCartOpen(true)}
           cartItemCount={cartItems.length}
         />
-
-        
         <Toaster position="top-right" />
-
-        
-        <Routes>
+        <Routes path="/">
+          <Route path="/AdminHome/*" element={<AdminHome />} />
           <Route path="/" element={<HomePage handleAddToCart={handleAddToCart} />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Product" element={<Product handleAddToCart={handleAddToCart} />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/ForgotPass" element={<ForgotPass />} />
-          <Route path="/Admin/*" element={<AdminHome />} />
-          <Route path="*" element={<AddProduct />} />
         </Routes>
-
-        
         <CartSidebar
-  isOpen={isCartOpen}
-  onClose={() => setCartOpen(false)}
-  cartItems={cartItems}
-  onRemove={handleRemoveFromCart}
-/>
+          isOpen={isCartOpen}
+          onClose={() => setCartOpen(false)}
+          cartItems={cartItems}
+          onRemove={handleRemoveFromCart}
+        />
       </BrowserRouter>
     </GoogleOAuthProvider>
   );

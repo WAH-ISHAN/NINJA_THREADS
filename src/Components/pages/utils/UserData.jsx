@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import AdminHome from "../Adminpage/AdminHome";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function UserData() {
@@ -24,7 +24,7 @@ export default function UserData() {
 					setUser(null);
 				});
 		}
-	}, []);
+	}, [token]);
 
 
     return (
@@ -32,7 +32,7 @@ export default function UserData() {
             {user == null ? (
                 <div className="h-full flex justify-center items-center flex-row">
                     <button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/Login')}
           className="hidden md:flex relative px-6 py-2 font-semibold text-white bg-transparent border-2 border-[#DC2626] rounded-md overflow-hidden cursor-pointer
             before:absolute before:inset-0 before:border-2 before:border-[#DC2626] before:rounded-md before:scale-0 before:transition-transform before:duration-300
             hover:before:scale-100 hover:bg-[#DC2626] hover:text-white z-50">
@@ -47,7 +47,7 @@ export default function UserData() {
                    onClick={()=>{
                     localStorage.removeItem("token")
                     setUser(null)
-                    window.location= "/login";
+                    window.location= "/Login";
                    }}>SIGN OUT
                     
                    </button>

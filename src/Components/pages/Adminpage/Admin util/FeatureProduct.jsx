@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-export function FeatureProduct(){
- const [formData, setFormData] = useState({
+export function FeatureProduct() {
+  const [formData, setFormData] = useState({
     productId: "",
     name: "",
     altNames: "",
@@ -13,13 +13,13 @@ export function FeatureProduct(){
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -29,17 +29,31 @@ export function FeatureProduct(){
       price: parseFloat(formData.price),
     };
 
-    console.log("Submitting Product:", payload);
-    axios.post("/api/product", payload)
-   .then(res => console.log(res))
-    .catch(err => console.error(err));
+    try {
+      const token = localStorage.getItem("token"); // 🛡️ stored login token
+      const res = await axios.post(
+        import.meta.env.VITE_API_URL + "/api/product",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      alert("✅ Product added successfully!");
+      console.log(res.data);
+    } catch (err) {
+      console.error("❌ Error adding product", err);
+      alert("❌ Product not added. Check your role or input.");
+    }
   };
 
-    return(
-
+  return (
     <div className="max-w-2xl mx-auto bg-gray-900 p-8 rounded-xl shadow-lg mt-6 text-white">
-      <h2 className="text-2xl font-semibold mb-6">Upcoming New Product</h2>
+      <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* all form inputs same as before */}
         <div>
           <label className="block mb-1 font-medium">Product ID</label>
           <input
@@ -51,7 +65,6 @@ export function FeatureProduct(){
             required
           />
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Name</label>
           <input
@@ -63,7 +76,6 @@ export function FeatureProduct(){
             required
           />
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Alternative Names (comma-separated)</label>
           <input
@@ -74,7 +86,6 @@ export function FeatureProduct(){
             className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
           />
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Price</label>
           <input
@@ -86,7 +97,6 @@ export function FeatureProduct(){
             required
           />
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Description</label>
           <textarea
@@ -97,7 +107,6 @@ export function FeatureProduct(){
             required
           ></textarea>
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Image URLs (comma-separated)</label>
           <input
@@ -118,5 +127,5 @@ export function FeatureProduct(){
         </button>
       </form>
     </div>
-    )
+  );
 }

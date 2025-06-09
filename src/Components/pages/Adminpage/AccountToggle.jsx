@@ -15,7 +15,7 @@ export function AccountToggle() {
       .get(`${import.meta.env.VITE_API_URL}/api/user/allusers`)
       .then((res) => {
         const allUsers = res?.data?.users || [];
-        // For demonstration, pick the first user (or null if none)
+        
         setUser(allUsers[0] || null);
       })
       .catch((err) => {

@@ -41,7 +41,7 @@ export function Header({ onCartClick, cartItemCount }) {
           <IoIosSearch className="text-2xl" />
         </button>
 
-        {/* 🛒 Cart Button */}
+        
         <button
           onClick={onCartClick}
           className="relative flex items-center justify-center px-6 py-2 bg-transparent border-2 border-[#DC2626] rounded-md hover:bg-[#DC2626] transition duration-300"

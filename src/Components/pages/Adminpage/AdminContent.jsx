@@ -20,8 +20,8 @@ export function AdminContent() {
       try {
         const [usersRes, ordersRes, productsRes] = await Promise.all([
           axios.get(`${import.meta.env.VITE_API_URL}/api/user`),
-          axios.get("/api/orders"),
-          axios.get("/api/products"),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/order`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/product`),
         ]);
 
         const totalUsers = usersRes.data.length;
