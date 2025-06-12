@@ -6,12 +6,12 @@ export function AdminOrder() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const token = localStorage.getItem("token"); // Adjust this if your token is stored elsewhere
+  const token = localStorage.getItem("token");
 
-  // Fetch orders on mount
+ 
   useEffect(() => {
     setLoading(true);
-    axios.get(import.meta.env.VITE_API_URL + "/api/order", {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/order`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,7 +31,7 @@ export function AdminOrder() {
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/api/order/${orderId}`,
-        { status: "Completed" }, // Make sure backend supports this payload
+        { status: "Completed" },
         {
           headers: {
             Authorization: `Bearer ${token}`,

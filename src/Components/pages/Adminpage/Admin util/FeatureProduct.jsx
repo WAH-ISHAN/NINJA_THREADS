@@ -30,7 +30,7 @@ export function FeatureProduct() {
     };
 
     try {
-      const token = localStorage.getItem("token"); // 🛡️ stored login token
+      const token = localStorage.getItem("token"); 
       const res = await axios.post(
         import.meta.env.VITE_API_URL + "/api/product",
         payload,
@@ -53,7 +53,7 @@ export function FeatureProduct() {
     <div className="max-w-2xl mx-auto bg-gray-900 p-8 rounded-xl shadow-lg mt-6 text-white">
       <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* all form inputs same as before */}
+      
         <div>
           <label className="block mb-1 font-medium">Product ID</label>
           <input

@@ -11,6 +11,9 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import ForgotPass from './Components/pages/Interface/ForgetPass.jsx';
 import CartSidebar from './Components/pages/utils/CardSideBar.jsx'; 
 import AdminHome from './Components/pages/Adminpage/AdminHome.jsx';
+import Cart from './Components/pages/ProductLayouts/Cart.jsx';
+import PlaceOrder from './Components/pages/ProductLayouts/PlaceOrder.jsx';
+
 
 function App() {
   const [isCartOpen, setCartOpen] = useState(false);
@@ -49,6 +52,7 @@ function App() {
           <Route path="/Product" element={<Product handleAddToCart={handleAddToCart} />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/ForgotPass" element={<ForgotPass />} />
+          <Route path="/PlaceOrder" element={<PlaceOrder />} />
         </Routes>
         <CartSidebar
           isOpen={isCartOpen}

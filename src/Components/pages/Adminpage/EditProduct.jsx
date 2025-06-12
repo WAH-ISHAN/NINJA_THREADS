@@ -129,8 +129,6 @@ export default function EditProductForm() {
                     className="w-[400px] h-[50px] border border-gray-500 rounded-xl text-center m-[5px]"
                     placeholder="Product Images"
                 />
-
-                {/* stock */}
                 <input
                     value={stock}
                     onChange={(e) => {

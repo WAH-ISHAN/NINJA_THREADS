@@ -1,131 +1,138 @@
-import { useState } from "react";
+
 import axios from "axios";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import mediaUpload from "../utils/MediaUpdate";
 
-export function AddProduct() {
-  const [formData, setFormData] = useState({
-    productId: "",
-    name: "",
-    altNames: "",
-    price: "",
-    description: "",
-    images: "",
-  });
+export default function AddProduct() {
+	const [productId, setProductId] = useState("");
+	const [name, setName] = useState("");
+	const [altNames, setAltNames] = useState("");
+	const [price, setPrice] = useState("");
+	const [labeledPrice, setLabeledPrice] = useState("");
+	const [description, setDescription] = useState("");
+	const [stock, setStock] = useState("");
+	const [images, setImages] = useState([]);
+	const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+	async function handleSubmit() {
+		const promisesArray = [];
+		for (let i = 0; i < images.length; i++) {
+			const promise = mediaUpload(images[i]);
+			promisesArray[i] = promise;
+		}
+		try {
+			const result = await Promise.all(promisesArray);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+			const altNamesInArray = altNames.split(",");
+			const product = {
+				productId: productId,
+				name: name,
+				altNames: altNamesInArray,
+				price: price,
+				labeledPrice: labeledPrice,
+				description: description,
+				stock: stock,
+				images: result,
+			};
+			const token = localStorage.getItem("token");
+			console.log(token);
 
-    const payload = {
-      ...formData,
-      altNames: formData.altNames.split(",").map((s) => s.trim()),
-      images: formData.images.split(",").map((s) => s.trim()),
-      price: parseFloat(formData.price),
-    };
+			await axios
+				.post(import.meta.env.VITE_BACKEND_URL + "/api/product", product, {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				})
+			toast.success("Product added successfully");
+			navigate("/Create");
+				
+		} catch (error) {
+			console.log(error);
+			toast.error("Product adding failed");
+		}
+	}
 
-    try {
-      const token = localStorage.getItem("token"); // 🛡️ stored login token
-      const res = await axios.post(
-        import.meta.env.VITE_API_URL + "/api/product",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+	return (
+  <div className="w-full h-full rounded-lg flex justify-center items-center bg-[#0e1013]">
+    <div className="w-[500px] h-[600px] rounded-lg shadow-lg flex flex-col items-center bg-[#1c212d] p-6">
+      <h1 className="text-3xl font-bold text-white m-[10px]">Add Product</h1>
 
-      alert("✅ Product added successfully!");
-      console.log(res.data);
-    } catch (err) {
-      console.error("❌ Error adding product", err);
-      alert("❌ Product not added. Check your role or input.");
-    }
-  };
+      <input
+        value={productId}
+        onChange={(e) => setProductId(e.target.value)}
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Product ID"
+      />
 
-  return (
-    <div className="max-w-2xl mx-auto bg-gray-900 p-8 rounded-xl shadow-lg mt-6 text-white">
-      <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* all form inputs same as before */}
-        <div>
-          <label className="block mb-1 font-medium">Product ID</label>
-          <input
-            type="text"
-            name="productId"
-            value={formData.productId}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Alternative Names (comma-separated)</label>
-          <input
-            type="text"
-            name="altNames"
-            value={formData.altNames}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Price</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Description</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-            required
-          ></textarea>
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Image URLs (comma-separated)</label>
-          <input
-            type="text"
-            name="images"
-            value={formData.images}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700"
-            required
-          />
-        </div>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Product Name"
+      />
 
-        <button
-          type="submit"
-          className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded font-semibold"
+      <input
+        value={altNames}
+        onChange={(e) => setAltNames(e.target.value)}
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Alternative Names (comma separated)"
+      />
+
+      <input
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        type="number"
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Price"
+      />
+
+      <input
+        value={labeledPrice}
+        onChange={(e) => setLabeledPrice(e.target.value)}
+        type="number"
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Labelled Price"
+      />
+
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="w-[400px] h-[80px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white p-2 m-[5px]"
+        placeholder="Description"
+      />
+
+      <input
+        type="file"
+        onChange={(e) => setImages(e.target.files)}
+        multiple
+        className="w-[400px] h-[50px] border border-gray-600 rounded-xl text-white text-center m-[5px] cursor-pointer bg-[#2a2f3d]"
+      />
+
+      <input
+        value={stock}
+        onChange={(e) => setStock(e.target.value)}
+        type="number"
+        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
+        placeholder="Stock"
+      />
+
+      <div className="w-[400px] h-[100px] flex justify-between items-center rounded-lg mt-4">
+        <Link
+          to={"/admin/products"}
+          className="bg-blue-600 text-white p-[10px] w-[180px] text-center rounded-lg hover:bg-red-700"
         >
-          Submit
+          Cancel
+        </Link>
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-600 cursor-pointer text-white p-[10px] w-[180px] text-center rounded-lg ml-[10px] hover:bg-red-700"
+        >
+          Add Product
         </button>
-      </form>
+      </div>
     </div>
-  );
+  </div>
+);
 }
