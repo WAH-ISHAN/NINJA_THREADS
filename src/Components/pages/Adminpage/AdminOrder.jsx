@@ -65,11 +65,6 @@ function AdminOrder() {
   };
 
 
-
-
-
-
-
   return (
     <>
       <ToastContainer position="top-center" />
