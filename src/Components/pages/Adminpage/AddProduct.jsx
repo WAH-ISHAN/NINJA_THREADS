@@ -1,138 +1,149 @@
-
+import React, { useState } from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import mediaUpload from "../utils/MediaUpdate";
+import uploadMedia from "../utils/MediaUpdate"; // Your media upload helper
 
 export default function AddProduct() {
-	const [productId, setProductId] = useState("");
-	const [name, setName] = useState("");
-	const [altNames, setAltNames] = useState("");
-	const [price, setPrice] = useState("");
-	const [labeledPrice, setLabeledPrice] = useState("");
-	const [description, setDescription] = useState("");
-	const [stock, setStock] = useState("");
-	const [images, setImages] = useState([]);
-	const navigate = useNavigate();
+  const [productId, setProductId] = useState("");
+  const [name, setName] = useState("");
+  const [altNames, setAltNames] = useState("");
+  const [price, setPrice] = useState("");
+  const [labeledPrice, setLabeledPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [stock, setStock] = useState("");
+  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
 
-	async function handleSubmit() {
-		const promisesArray = [];
-		for (let i = 0; i < images.length; i++) {
-			const promise = mediaUpload(images[i]);
-			promisesArray[i] = promise;
-		}
-		try {
-			const result = await Promise.all(promisesArray);
+  async function handleSubmit() {
+    if (!productId || !name || !price || !stock) {
+      toast.error("Please fill all required fields");
+      return;
+    }
 
-			const altNamesInArray = altNames.split(",");
-			const product = {
-				productId: productId,
-				name: name,
-				altNames: altNamesInArray,
-				price: price,
-				labeledPrice: labeledPrice,
-				description: description,
-				stock: stock,
-				images: result,
-			};
-			const token = localStorage.getItem("token");
-			console.log(token);
+    try {
+     
+      const uploadPromises = Array.from(images).map((file) => uploadMedia(file));
+      const imageUrls = await Promise.all(uploadPromises);
 
-			await axios
-				.post(import.meta.env.VITE_BACKEND_URL + "/api/product", product, {
-					headers: {
-						Authorization: "Bearer " + token,
-					},
-				})
-			toast.success("Product added successfully");
-			navigate("/Create");
-				
-		} catch (error) {
-			console.log(error);
-			toast.error("Product adding failed");
-		}
-	}
+      const altNamesArray = altNames
+        ? altNames.split(",").map((n) => n.trim())
+        : [];
 
-	return (
-  <div className="w-full h-full rounded-lg flex justify-center items-center bg-[#0e1013]">
-    <div className="w-[500px] h-[600px] rounded-lg shadow-lg flex flex-col items-center bg-[#1c212d] p-6">
-      <h1 className="text-3xl font-bold text-white m-[10px]">Add Product</h1>
+      const product = {
+        productId,
+        name,
+        altNames: altNamesArray,
+        price: Number(price),
+        labeledPrice: labeledPrice ? Number(labeledPrice) : 0,
+        description,
+        stock: Number(stock),
+        images: imageUrls,
+      };
 
-      <input
-        value={productId}
-        onChange={(e) => setProductId(e.target.value)}
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Product ID"
-      />
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("You must be logged in to add products");
+        return;
+      }
 
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Product Name"
-      />
+      await axios.post(
+        import.meta.env.VITE_API_URL + "/api/product/Create",
+        product,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
-      <input
-        value={altNames}
-        onChange={(e) => setAltNames(e.target.value)}
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Alternative Names (comma separated)"
-      />
+      toast.success("Product added successfully");
+      navigate("/Product");
+    } catch (error) {
+      console.error(error);
+      toast.error("Product adding failed");
+    }
+  }
 
-      <input
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        type="number"
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Price"
-      />
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-[#0e1013] p-6">
+      <div className="w-full max-w-md bg-[#1c212d] p-6 rounded-lg shadow-lg overflow-auto">
+        <h1 className="text-white text-3xl mb-6 font-bold text-center">Add Product</h1>
 
-      <input
-        value={labeledPrice}
-        onChange={(e) => setLabeledPrice(e.target.value)}
-        type="number"
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Labelled Price"
-      />
+        <input
+          type="text"
+          placeholder="Product ID"
+          value={productId}
+          onChange={(e) => setProductId(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+          required
+        />
 
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="w-[400px] h-[80px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white p-2 m-[5px]"
-        placeholder="Description"
-      />
+        <input
+          type="text"
+          placeholder="Product Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+          required
+        />
 
-      <input
-        type="file"
-        onChange={(e) => setImages(e.target.files)}
-        multiple
-        className="w-[400px] h-[50px] border border-gray-600 rounded-xl text-white text-center m-[5px] cursor-pointer bg-[#2a2f3d]"
-      />
+        <input
+          type="text"
+          placeholder="Alternative Names (comma separated)"
+          value={altNames}
+          onChange={(e) => setAltNames(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+        />
 
-      <input
-        value={stock}
-        onChange={(e) => setStock(e.target.value)}
-        type="number"
-        className="w-[400px] h-[50px] bg-[#2a2f3d] border border-gray-600 rounded-xl text-white text-center m-[5px]"
-        placeholder="Stock"
-      />
+        <input
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+          required
+        />
 
-      <div className="w-[400px] h-[100px] flex justify-between items-center rounded-lg mt-4">
-        <Link
-          to={"/admin/products"}
-          className="bg-blue-600 text-white p-[10px] w-[180px] text-center rounded-lg hover:bg-red-700"
-        >
-          Cancel
-        </Link>
+        <input
+          type="number"
+          placeholder="Labeled Price (optional)"
+          value={labeledPrice}
+          onChange={(e) => setLabeledPrice(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+        />
+
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="mb-4 w-full p-3 rounded bg-[#2a2f3d] text-white"
+          rows={4}
+        />
+
+        <input
+          type="file"
+          multiple
+          onChange={(e) => setImages(e.target.files)}
+          className="mb-4 w-full p-2 rounded cursor-pointer bg-[#2a2f3d] text-white"
+        />
+
+        <input
+          type="number"
+          placeholder="Stock"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          className="mb-6 w-full p-3 rounded bg-[#2a2f3d] text-white"
+          required
+        />
+
         <button
           onClick={handleSubmit}
-          className="bg-blue-600 cursor-pointer text-white p-[10px] w-[180px] text-center rounded-lg ml-[10px] hover:bg-red-700"
+          className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition"
         >
           Add Product
         </button>
       </div>
     </div>
-  </div>
-);
+  );
 }

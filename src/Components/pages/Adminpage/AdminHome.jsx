@@ -5,8 +5,8 @@ import { AiFillProduct } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
 import { AdminContent } from "./AdminContent";
 import AddProduct from "./AddProduct";
-import { FeatureProduct } from "./Admin util/FeatureProduct";
-import  {AdminOrder}  from "./AdminOrder";
+import  EditProduct  from "./Admin util/FeatureProduct";
+import  AdminOrder from "./AdminOrder";
 import { AdminUsers } from "./AdminUsers";
 import Profile from "./Admin util/Profile";
 import { HomePage } from "../Interface/HomePage";
@@ -40,8 +40,8 @@ export default function AdminPage() {
         <Link to="AddProduct" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
           <AiFillProduct /> Add Product
         </Link>
-        <Link to="AddFeatureProduct" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
-          <AiFillProduct /> Add Feature Product
+        <Link to="EditProduct" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+          <AiFillProduct /> Edit Product
         </Link>
         <Link to="pageoverview" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
           <GrView /> Page Overview
@@ -54,7 +54,7 @@ export default function AdminPage() {
         <Routes>
           <Route path="AdminContent" element={<AdminContent />} />
           <Route path="AddProduct" element={<AddProduct />} />
-          <Route path="AddFeatureProduct" element={<FeatureProduct />} />
+          <Route path="EditProduct" element={<EditProduct/>} />
           <Route path="Orders" element={<AdminOrder />} />
           <Route path="Users" element={<AdminUsers />} />
           <Route path="Profile" element={<Profile />} />

@@ -1,11 +1,10 @@
 
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CartSidebar from "../utils/CardSideBar";
 import { useNavigate } from "react-router-dom";
 
-export function FeaturePro() {
+export function  UpcomingProduct() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
@@ -54,7 +53,7 @@ export function FeaturePro() {
     }
     setIsCartOpen(true);
 
-    
+
     const updatedCart = [...cartItems];
     const index = updatedCart.findIndex(
       (item) => item.id === product.productId
@@ -92,7 +91,7 @@ export function FeaturePro() {
   return (
     <>
       <section className="py-10 px-4 md:px-10 bg-black min-h-screen">
-        <h3 className="text-3xl font-semibold mb-6 text-white">Upcoming Products</h3>
+        <h3 className="text-3xl font-semibold mb-6 text-white">Products</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {products.length === 0 ? (
             <p className="text-white">No products available</p>
@@ -153,4 +152,5 @@ export function FeaturePro() {
   );
 }
 
-export default FeaturePro;
+export default  UpcomingProduct;
+

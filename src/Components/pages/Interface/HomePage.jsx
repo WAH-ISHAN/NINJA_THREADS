@@ -3,12 +3,12 @@ import 'boxicons/css/boxicons.min.css';
 import Product from "../ProductLayouts/Product.jsx";
 import Login from "./Login";
 import Banner from '../Interface/Banner';
-import { FeaturePro } from '../ProductLayouts/FeaturePro';
 import CategorySlider from '../utils/CategorySlider';
 import BannerHome from './BannerHome';
 import Contact from "./Contact"
 import ClientReact from '../utils/clientReact.jsx';
 import Wrapper from '../utils/wapper.jsx';
+import UpcomingProduct from '../ProductLayouts/UpcomingProduct.jsx';
 
 
 
@@ -28,7 +28,7 @@ export function HomePage() {
       <CategorySlider />
 
 
-      <FeaturePro />
+      <UpcomingProduct/>
 
       <hr className="w-full h-[5px] border-none bg-gradient-to-r from-[#DC2626] via-[#000000] to-white bg-[length:200%_100%] animate-colorChange" />
 
