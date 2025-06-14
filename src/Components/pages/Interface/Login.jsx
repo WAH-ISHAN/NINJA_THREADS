@@ -19,31 +19,22 @@ export default function LoginPage() {
     onSuccess: (res) => {
       setLoading(true);
       axios
-        .post(import.meta.env.VITE_API_URL + "/api/user/login", {
+        .post(import.meta.env.VITE_API_URL + "/api/user/google", {
           accessToken: res.access_token,
         })
-        .then((response) => {
-          console.log("Login successful", response.data);
-          toast.success("Login successful");
-          localStorage.setItem("token", response.data.token);
-          
+       .then((response) => {
+					console.log("Login successful", response.data);
+					toast.success("Login successful");
+					localStorage.setItem("token", response.data.token);
 
-          const user = response.data.user;
-          if (user.usertype === "admin") {
-            console.log("Navigating to admin dashboard");
-            navigate("/AdminHome");
-          } else {
-            console.log("Navigating to home page");
-            navigate('/')
-          }
-        })
-        .catch((error) => {
-          console.error("Google login failed", error);
-          toast.error("Google login failed");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+					const user = response.data.user;
+					if (user.usertype === "admin") {
+						navigate("/AdminHome");
+					} else {
+						navigate("/");
+					}
+					setLoading(false);
+				});
     },
   });
 
