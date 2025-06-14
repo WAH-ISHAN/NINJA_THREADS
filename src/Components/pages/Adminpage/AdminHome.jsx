@@ -11,6 +11,7 @@ import { AdminUsers } from "./AdminUsers";
 import Profile from "./Admin util/Profile";
 import { HomePage } from "../Interface/HomePage";
 import { AccountToggle } from "./AccountToggle";
+import AdminCreateProfile from "./Admin util/AdminCreate";
 
 export default function AdminPage() {
   const handleLogout = () => {
@@ -30,6 +31,9 @@ export default function AdminPage() {
         </Link>
         <Link to="Profile" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
           <FaUserCircle /> Profile
+        </Link>
+        <Link to="AdminCreateProfile" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
+          <FaUsers /> Create Admin
         </Link>
         <Link to="Users" className="flex items-center gap-4 text-white hover:shadow hover:shadow-gray-700 transition duration-300 rounded px-2 py-1">
           <FaUsers /> Users
@@ -58,6 +62,7 @@ export default function AdminPage() {
           <Route path="Orders" element={<AdminOrder />} />
           <Route path="Users" element={<AdminUsers />} />
           <Route path="Profile" element={<Profile />} />
+          <Route path="AdminCreateProfile" element={<AdminCreateProfile />} />
           <Route path="pageoverview" element={<HomePage />} />
           <Route path="logout" element={<h1>Logging Out...</h1>} />
         </Routes>
