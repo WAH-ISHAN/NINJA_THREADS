@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import uploadMedia from "../utils/MediaUpdate"; // Your media upload helper
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 export default function AddProduct() {
   const [productId, setProductId] = useState("");
@@ -22,9 +27,28 @@ export default function AddProduct() {
     }
 
     try {
-     
-      const uploadPromises = Array.from(images).map((file) => uploadMedia(file));
-      const imageUrls = await Promise.all(uploadPromises);
+      // Upload images to Supabase
+      const uploadedUrls = [];
+
+      for (const file of images) {
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const { data, error } = await supabase.storage
+          .from("img")
+          .upload(fileName, file, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+        if (error) {
+          console.error("Upload error:", error);
+          toast.error("Error uploading image");
+          return;
+        }
+
+        const publicUrl = supabase.storage.from("img").getPublicUrl(data.path).data.publicUrl;
+        uploadedUrls.push(publicUrl);
+      }
 
       const altNamesArray = altNames
         ? altNames.split(",").map((n) => n.trim())
@@ -38,7 +62,7 @@ export default function AddProduct() {
         labeledPrice: labeledPrice ? Number(labeledPrice) : 0,
         description,
         stock: Number(stock),
-        images: imageUrls,
+        images: uploadedUrls,
       };
 
       const token = localStorage.getItem("token");
