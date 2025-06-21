@@ -1,6 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-
+//web3from kiyana plateform eken api key ekk genarate kragththa "https://web3forms.com/features"
 
 
 export  function Contact() {
