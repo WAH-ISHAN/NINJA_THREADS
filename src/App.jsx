@@ -15,6 +15,7 @@ import Cart from './Components/pages/ProductLayouts/Cart.jsx';
 import PlaceOrder from './Components/pages/ProductLayouts/PlaceOrder.jsx';
 
 
+
 function App() {
   const [isCartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
